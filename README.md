@@ -1,6 +1,11 @@
-### Discontinued :(
-I sadly lost interest, don't really want to work on this anymore. Not alone, that is. If you wish to contribute, feel free to contact me or fork this!
-It's highly encouraged! <3
+Currently in an effort of porting this project to Godot 4. Work in progress. Feel free to contact me (in Issue page) to help.
+
+##### About the repo creator
+The creator of this repo lost interest, don't really want to work on this anymore, busy with his work. If you wish to contribute, feel free to contact me (the current fork owner). It's highly encouraged! <3
+
+Previous readme file are down below:
+
+---
 
 # _UNDOTALE_
 An UNDERTALE Engine recreated inside of Godot!
@@ -45,8 +50,8 @@ Requirements:
 6. Have fun messing around!
 
 ## License
-The project is free to use only for **NON-commercial purposes. Do NOT sell this.**
-Doing so results in copyright infringement torwards the current UNDERTALE owner.
+The project is free and falls under the MIT license.
+Selling a compiled version of this project as is without removing UNDERTALE assets, however, will result in copyright infringement torwards the current UNDERTALE owner.
 *UNDERTALE is a creation of Toby Fox.*
 Most of the assets were taken or copied from them and are therefore not mine.
 Only thing I have to take credit for is the code I wrote and nothing else.
@@ -61,12 +66,8 @@ Same goes for the fonts included:
 | Pixel Comic Sans | by [ColorSwitchFan25](https://fontstruct.com/fontstructions/show/1534860/pixel-comic-sans-undertale-sans-font) |
 | UT HP Font | by [SevenC](is.gd/uthpfont) |
 
-## CONTACTS
+## CONTACTS (original repo owner)
 In case you have any issue you would like to disclose, down here you can find several contact info.
 
-_Discord tag:_ **Samuel Wolfang#3425**
+_Discord tag:_ **samuelwolfang**
 _Email:_ [soupsam02@gmail.com](mailto:soupsam02@gmail.com)
-
-Copyright (c) [2021] [alias Samuel Wolfang]. [![UNDOTALE Icon](https://i.imgur.com/DBLxrrj.png)](https://www.youtube.com/channel/UCRzHxOux8-jpVgnPkJVWA-w)
-
-**_PLEASE_** **DO NOT SELL.**

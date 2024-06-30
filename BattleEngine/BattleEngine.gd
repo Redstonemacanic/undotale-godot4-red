@@ -21,7 +21,7 @@ var function
 signal shake_camera
 
 func _ready():
-	connect("shake_camera", Callable(self, "shake_camera"))
+	shake_camera.connect(_on_shake_camera) # connect("shake_camera", Callable(self, "shake_camera"))
 	$Music.play(10)
 	$HUD/Name.text = Data.human
 	playersTurn()
@@ -36,7 +36,7 @@ func playersTurn(reset_line = true):
 	await buttons.select
 	#blitter.feed(["", null, null, true])
 	
-	function = buttons.selection()
+	function = buttons.get_selection()
 	match function:
 		"Fight", "Act", "Mercy":
 			target()
@@ -46,8 +46,8 @@ func playersTurn(reset_line = true):
 				return
 			items.enable(soul, blitter)
 			await items.select
-			if items.enable:
-				items.enable = false
+			if items.enabled:
+				items.enabled = false
 				playersTurn()
 				return
 
@@ -55,7 +55,7 @@ func target():
 	enemies.enable(soul)
 	blitter.feed([enemies.string(), null, null, true])
 	await enemies.select
-	selection = enemies.selection()
+	selection = enemies.get_selection()
 	
 	if enemies.enable:
 		enemies.enable = false
@@ -126,7 +126,7 @@ func enemysTurn():
 var store_amnt = 0
 var random = [-1, 1]
 
-func shake_camera(amount = 5):
+func _on_shake_camera(amount = 5):
 	if store_amnt == 0:
 		store_amnt = (amount/100.0) + 0.01
 	var offset_sign = Vector2((int($Camera3D.offset.x >= 0) * 2) - 1,(int($Camera3D.offset.y >= 0) * 2) - 1)
@@ -135,6 +135,6 @@ func shake_camera(amount = 5):
 	var test = amount/100.0
 	await get_tree().create_timer(store_amnt - test).timeout
 	if amount != 0:
-		shake_camera(amount)
+		_on_shake_camera(amount) # ether: idk if this is calling the signal or the function itself
 	else:
 		store_amnt = 0

@@ -4,7 +4,7 @@ extends Node2D
 var input
 var selection = 0
 
-var enable = false
+var enabled = false # was "enable"
 
 var possiblePositions = [285,315,350]
 var positionArray = []
@@ -12,16 +12,19 @@ var soul
 
 var children = []
 
-var cutscene = []
+#var cutscene = [] # ether: wasn't commented before
 
 signal select
 signal cutscene_end
 
+func cutscene(arg): # ether: to be overloaded?
+	pass
+
 func _ready():
-	connect("cutscene_end", Callable(self, "selection"))
+	cutscene_end.connect(get_selection) # connect("cutscene_end", Callable(self, "selection"))
 
 func _process(delta):
-	if enable:
+	if enabled:
 		input = int(Input.is_action_just_pressed("ui_down")) - int(Input.is_action_just_pressed("ui_up"))
 		
 		if input:
@@ -31,39 +34,39 @@ func _process(delta):
 		soul.position = Vector2(80, positionArray[selection])
 		
 		if Input.is_action_just_pressed("ui_accept"):
-			self.enable = false
+			self.enabled = false
 			get_parent().get_node("Select").play()
-			emit_signal("select")
+			select.emit() # emit_signal("select")
 		elif Input.is_action_just_pressed("ui_cancel"):
 			get_parent().get_node("Squeak").play()
-			emit_signal("select")
+			select.emit() # emit_signal("select")
 
-func enable(soul):
+func enable(_soul):
 	children.clear()
 	for child in get_children():
 		if !child.spared:
 			children.append(child)
 
 	positionArray = possiblePositions.slice(0, children.size() - 1)
-	self.soul = soul
+	self.soul = _soul
 	connect("select", Callable(self, "disable"))
 	await get_tree().create_timer(0.1).timeout
-	self.enable = true
+	self.enabled = true
 
 func disable():
 	disconnect("select", Callable(self, "disable"))
 
 func string():
-	var string = ""
+	var _string = ""
 	for child in children:
 		var monster = "\t\t* " + child.NAME + "\n"
 		if child.spareable:
 			monster = "[color=yellow]" + monster + "[/color]"
-		string += monster
-	return string
+		_string += monster
+	return _string
 
-func selection():
+func get_selection(): # was "selection"
 	return children[selection]
 
-func select():
+func _on_select(): # was "select". ether: idk what this does, and why nothing happens on select signal
 	pass

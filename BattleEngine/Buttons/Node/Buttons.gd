@@ -3,7 +3,7 @@ extends Node2D
 var input
 var selection = 0
 
-var enable = false
+var enabled = false
 
 var positionArray = [50,205,362,517]
 var soul
@@ -12,13 +12,13 @@ var soul
 
 signal select
 
-func enable(soul):
-	self.soul = soul
-	connect("select", Callable(self, "disable"))
-	self.enable = true
+func enable(_soul):
+	self.soul = _soul
+	select.connect(disable) # connect("select", Callable(self, "disable"))
+	self.enabled = true
 
 func _process(delta):
-	if enable:
+	if enabled:
 		input = int(Input.is_action_just_pressed("ui_right")) - int(Input.is_action_just_pressed("ui_left"))
 		
 		if input:
@@ -35,12 +35,12 @@ func _process(delta):
 			emit_signal("select")
 
 func disable():
-	self.enable = false
-	disconnect("select", Callable(self, "disable"))
+	self.enabled = false
+	select.disconnect(disable) # disconnect("select", Callable(self, "disable"))
 
 func turn_off():
 	for child in get_children():
 		child.frame = 0
 
-func selection():
+func get_selection(): # was "selection
 	return children[selection].name

@@ -42,10 +42,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mft1l"]
 shader = ExtResource("18")
-shader_parameter/topleft = Vector2(-3.13994, 0)
-shader_parameter/topright = Vector2(-3.87349, 0)
+shader_parameter/topleft = null
+shader_parameter/topright = null
 shader_parameter/bottomleft = null
 shader_parameter/bottomright = null
 
@@ -194,7 +194,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D/Legs:material:shader_param/topright")
+tracks/5/path = NodePath("Sprite2D/Legs:material:shader_parameter/topright")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -206,7 +206,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D/Legs:material:shader_param/topleft")
+tracks/6/path = NodePath("Sprite2D/Legs:material:shader_parameter/topleft")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -391,34 +391,35 @@ script = ExtResource("6")
 scale = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(21.9805, -14.3679)
+position = Vector2(31.8791, -14.9433)
 sprite_frames = SubResource("1")
 frame = 3
 
 [node name="left" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-26.8164, -1.63039)
-rotation = 0.00455168
+position = Vector2(-20.949, -4)
+rotation = 0.0523599
 texture = ExtResource("17")
 offset = Vector2(5, 10)
 
 [node name="Bust" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-4.76692, 2.97392)
+position = Vector2(2, 2.5)
 texture = ExtResource("14")
 
 [node name="Legs" type="AnimatedSprite2D" parent="Sprite2D"]
-material = SubResource("2")
+material = SubResource("ShaderMaterial_mft1l")
 position = Vector2(1.14057, 40.2599)
 rotation = -0.00890005
 sprite_frames = SubResource("3")
+frame = 1
 
 [node name="right" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(15.0801, -5.10431)
-rotation = -0.0503374
+position = Vector2(18.276, -7)
+rotation = -0.0230113
 texture = ExtResource("15")
 offset = Vector2(7, 19)
 
 [node name="head_0" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-4.30222, -7.15647)
+position = Vector2(1.057, -10)
 texture = ExtResource("16")
 offset = Vector2(0, -15)
 
@@ -439,7 +440,6 @@ offset_right = 202.0
 offset_bottom = 2.0
 theme_override_fonts/normal_font = SubResource("6")
 text = "HELLO! NYEH HE"
-theme_override_fonts/normal_font = SubResource("6")
 skippable = true
 
 [node name="Animations" type="AnimationPlayer" parent="."]

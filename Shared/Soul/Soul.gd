@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var ghost = preload("res://Shared/Soul/Ghost.tscn")
 
-@export var currentFunction # (String, "", "red", "blue")
+@export var currentFunction : String # (String, "", "red", "blue")
 
 var health = 48
 

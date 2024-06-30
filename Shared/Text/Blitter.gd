@@ -13,7 +13,7 @@ signal next
 @onready var timer = $Timer
 
 func _ready():
-	connect("next", Callable(self, "next"))
+	next.connect(_on_next)
 	click_node.stream = click
 
 func _process(delta):
@@ -59,7 +59,7 @@ func nextChar():
 	else:
 		ongoing = false
 
-func next():
+func _on_next():
 	visible_characters = 0
 
 func _on_text_timeout():
