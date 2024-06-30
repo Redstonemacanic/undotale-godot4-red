@@ -1,19 +1,19 @@
 extends Node2D
 
-onready var Attacker = preload("res://BattleEngine/DamageMeter/DamageMeter.tscn")
-onready var Slice = preload("res://BattleEngine/Weapon/Weapon.tscn")
-onready var Damage = preload("res://BattleEngine/DamageMeter/Text/Damage.tscn")
+@onready var Attacker = preload("res://BattleEngine/DamageMeter/DamageMeter.tscn")
+@onready var Slice = preload("res://BattleEngine/Weapon/Weapon.tscn")
+@onready var Damage = preload("res://BattleEngine/DamageMeter/Text/Damage.tscn")
 
-onready var box = $Box
-onready var global_attacks = $Attacks
-onready var attacks = $Box/Attacks
-onready var blitter = $Box/Blitter
-onready var enemies = $Enemies
-onready var soul = $Soul
+@onready var box = $Box
+@onready var global_attacks = $Attacks
+@onready var attacks = $Box/Attacks
+@onready var blitter = $Box/Blitter
+@onready var enemies = $Enemies
+@onready var soul = $Soul
 
-onready var buttons = $Buttons
-onready var acting = $ActingSelector
-onready var items = $ItemSelector
+@onready var buttons = $Buttons
+@onready var acting = $ActingSelector
+@onready var items = $ItemSelector
 
 var selection
 var function
@@ -21,7 +21,7 @@ var function
 signal shake_camera
 
 func _ready():
-	connect("shake_camera", self, "shake_camera")
+	connect("shake_camera", Callable(self, "shake_camera"))
 	$Music.play(10)
 	$HUD/Name.text = Data.human
 	playersTurn()
@@ -33,7 +33,7 @@ func playersTurn(reset_line = true):
 	if reset_line:
 		blitter.feed(["* You feel puzzled.", [22], null, false])
 	buttons.enable(soul)
-	yield(buttons, "select")
+	await buttons.select
 	#blitter.feed(["", null, null, true])
 	
 	function = buttons.selection()
@@ -41,11 +41,11 @@ func playersTurn(reset_line = true):
 		"Fight", "Act", "Mercy":
 			target()
 		"Item":
-			if Data.items.empty():
+			if Data.items.is_empty():
 				playersTurn(false)
 				return
 			items.enable(soul, blitter)
-			yield(items, "select")
+			await items.select
 			if items.enable:
 				items.enable = false
 				playersTurn()
@@ -54,7 +54,7 @@ func playersTurn(reset_line = true):
 func target():
 	enemies.enable(soul)
 	blitter.feed([enemies.string(), null, null, true])
-	yield(enemies, "select")
+	await enemies.select
 	selection = enemies.selection()
 	
 	if enemies.enable:
@@ -67,10 +67,10 @@ func target():
 			buttons.turn_off()
 			soul.position = Vector2(-10,-10)
 			
-			var attacker = Attacker.instance()
-			attacker.position = box.rect_position + (box.rect_size / 2)
-			attacker.connect("slaughter", self, "slay")
-			attacker.connect("enemys_turn", self, "enemysTurn")
+			var attacker = Attacker.instantiate()
+			attacker.position = box.position + (box.size / 2)
+			attacker.connect("slaughter", Callable(self, "slay"))
+			attacker.connect("enemys_turn", Callable(self, "enemysTurn"))
 			
 			blitter.feed()
 			
@@ -81,7 +81,7 @@ func target():
 			acting.list = selection.actings
 			blitter.feed([acting.string(), null, null, true])
 			acting.enable(soul)
-			yield(acting, "select")
+			await acting.select
 			
 			if acting.enable:
 				acting.enable = false
@@ -99,12 +99,12 @@ func target():
 			enemysTurn()
 
 func slay():
-	var slice = Slice.instance()
+	var slice = Slice.instantiate()
 	slice.position = selection.position
 	add_child(slice)
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
-	var damage = Damage.instance()
+	var damage = Damage.instantiate()
 	damage.position = selection.position
 	selection.shake(15)
 	damage.get_node("Label").text = String(selection.DEF)
@@ -115,10 +115,10 @@ func slay():
 
 func enemysTurn():
 	enemies.cutscene(box)
-	yield(enemies, "cutscene_end")
+	await enemies.cutscene_end
 	
 	enemies.attack()
-	yield(enemies, "cutscene_end")
+	await enemies.cutscene_end
 	
 	soul.changeMovement("")
 	playersTurn()
@@ -129,11 +129,11 @@ var random = [-1, 1]
 func shake_camera(amount = 5):
 	if store_amnt == 0:
 		store_amnt = (amount/100.0) + 0.01
-	var offset_sign = Vector2((int($Camera.offset.x >= 0) * 2) - 1,(int($Camera.offset.y >= 0) * 2) - 1)
-	$Camera.offset = Vector2 (-(amount * offset_sign.x),random[randi() % random.size()] * (amount * offset_sign.y))
+	var offset_sign = Vector2((int($Camera3D.offset.x >= 0) * 2) - 1,(int($Camera3D.offset.y >= 0) * 2) - 1)
+	$Camera3D.offset = Vector2 (-(amount * offset_sign.x),random[randi() % random.size()] * (amount * offset_sign.y))
 	amount -= 1
 	var test = amount/100.0
-	yield(get_tree().create_timer(store_amnt - test), "timeout")
+	await get_tree().create_timer(store_amnt - test).timeout
 	if amount != 0:
 		shake_camera(amount)
 	else:

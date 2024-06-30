@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/alphys.wav-3e81a93a5cf1fc0487cda85d020d640f.sample"
+type="AudioStreamWAV"
+uid="uid://chixgp7tjfs68"
+path="res://.godot/imported/alphys.wav-3e81a93a5cf1fc0487cda85d020d640f.sample"
 
 [deps]
 
 source_file="res://Shared/Text/Clicks/Files/alphys.wav"
-dest_files=[ "res://.import/alphys.wav-3e81a93a5cf1fc0487cda85d020d640f.sample" ]
+dest_files=["res://.godot/imported/alphys.wav-3e81a93a5cf1fc0487cda85d020d640f.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

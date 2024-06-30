@@ -16,8 +16,8 @@ signal select
 
 func enable(soul):
 	self.soul = soul
-	connect("select", self, "disable")
-	yield(get_tree().create_timer(0.1), "timeout")
+	connect("select", Callable(self, "disable"))
+	await get_tree().create_timer(0.1).timeout
 	self.enable = true
 
 func _process(delta):
@@ -53,7 +53,7 @@ func string():
 	return string
 
 func disable():
-	disconnect("select", self, "disable")
+	disconnect("select", Callable(self, "disable"))
 
 func selection():
 	return list[selection]

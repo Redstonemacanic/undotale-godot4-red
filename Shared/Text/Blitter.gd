@@ -1,19 +1,19 @@
 extends RichTextLabel
 
-onready var click_node = $Click
+@onready var click_node = $Click
 
 var line = ["Test! One two three, one two three", [-1], [0.035, 0.5], false]
 var click = preload("res://Shared/Text/Clicks/Files/generic2.wav")
 
 var ongoing = false
-export var skippable = false
+@export var skippable = false
 
 signal next
 
-onready var timer = $Timer
+@onready var timer = $Timer
 
 func _ready():
-	connect("next", self, "next")
+	connect("next", Callable(self, "next"))
 	click_node.stream = click
 
 func _process(delta):
@@ -38,11 +38,11 @@ func feed(args = [""]):
 		if args[index] != null:
 			line[index] = args[index]
 
-	bbcode_text = ""
+	text = ""
 	visible_characters = 0
 	
-	bbcode_text = line[0]
-	yield(get_tree().create_timer(0.1), "timeout")
+	text = line[0]
+	await get_tree().create_timer(0.1).timeout
 	
 	if line[3]:
 		visible_characters = len(line[0])

@@ -18,7 +18,7 @@ signal select
 signal cutscene_end
 
 func _ready():
-	connect("cutscene_end", self, "selection")
+	connect("cutscene_end", Callable(self, "selection"))
 
 func _process(delta):
 	if enable:
@@ -46,12 +46,12 @@ func enable(soul):
 
 	positionArray = possiblePositions.slice(0, children.size() - 1)
 	self.soul = soul
-	connect("select", self, "disable")
-	yield(get_tree().create_timer(0.1), "timeout")
+	connect("select", Callable(self, "disable"))
+	await get_tree().create_timer(0.1).timeout
 	self.enable = true
 
 func disable():
-	disconnect("select", self, "disable")
+	disconnect("select", Callable(self, "disable"))
 
 func string():
 	var string = ""

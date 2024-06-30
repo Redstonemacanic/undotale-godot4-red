@@ -26,8 +26,8 @@ func enable(soul, blitter):
 	list = rows(Data.items)
 	blitter.feed([string(), null, null, true])
 	
-	connect("select", self, "disable")
-	yield(get_tree().create_timer(0.1), "timeout")
+	connect("select", Callable(self, "disable"))
+	await get_tree().create_timer(0.1).timeout
 	self.enable = true
 
 func string():
@@ -112,7 +112,7 @@ func _process(delta):
 			emit_signal("select")
 
 func disable():
-	disconnect("select", self, "disable")
+	disconnect("select", Callable(self, "disable"))
 
 func selection():
 	return list[int(second_row)][selection]

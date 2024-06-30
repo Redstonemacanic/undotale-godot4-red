@@ -18,7 +18,7 @@ func hit():
 	stopped = true
 	emit_signal("slaughter")
 	$Bar.play()
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	disappear()
 
 func disappear():

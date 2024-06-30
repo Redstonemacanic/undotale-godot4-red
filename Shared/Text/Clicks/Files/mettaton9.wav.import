@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mettaton9.wav-a2d2d3fd16206dccca44ffcff6c06307.sample"
+type="AudioStreamWAV"
+uid="uid://dea25xt35ifo0"
+path="res://.godot/imported/mettaton9.wav-a2d2d3fd16206dccca44ffcff6c06307.sample"
 
 [deps]
 
 source_file="res://Shared/Text/Clicks/Files/mettaton9.wav"
-dest_files=[ "res://.import/mettaton9.wav-a2d2d3fd16206dccca44ffcff6c06307.sample" ]
+dest_files=["res://.godot/imported/mettaton9.wav-a2d2d3fd16206dccca44ffcff6c06307.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

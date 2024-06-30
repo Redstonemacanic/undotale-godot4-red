@@ -8,4 +8,4 @@ func _on_animation_finished(anim_name):
 	queue_free()
 
 func random_rotation():
-	rotation_degrees = rand_range(0, 360)
+	rotation_degrees = randf_range(0, 360)

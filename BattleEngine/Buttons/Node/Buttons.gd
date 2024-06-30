@@ -8,13 +8,13 @@ var enable = false
 var positionArray = [50,205,362,517]
 var soul
 
-onready var children = self.get_children().slice(0,3)
+@onready var children = self.get_children().slice(0,3)
 
 signal select
 
 func enable(soul):
 	self.soul = soul
-	connect("select", self, "disable")
+	connect("select", Callable(self, "disable"))
 	self.enable = true
 
 func _process(delta):
@@ -36,7 +36,7 @@ func _process(delta):
 
 func disable():
 	self.enable = false
-	disconnect("select", self, "disable")
+	disconnect("select", Callable(self, "disable"))
 
 func turn_off():
 	for child in get_children():

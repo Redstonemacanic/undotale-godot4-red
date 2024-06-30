@@ -13,7 +13,7 @@ signal select
 signal exit
 
 func enable():
-	connect("select", self, "select")
+	connect("select", Callable(self, "select"))
 	enable = true
 
 func _process(delta):
@@ -28,7 +28,7 @@ func _process(delta):
 			disable()
 
 func disable():
-	disconnect("select", self, "select")
+	disconnect("select", Callable(self, "select"))
 	enable = false
 
 func select():

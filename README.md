@@ -45,8 +45,8 @@ Requirements:
 6. Have fun messing around!
 
 ## License
-The project is free and falls under the MIT license.
-Selling a compiled version of this project as is without removing UNDERTALE assets, however, will result in copyright infringement torwards the current UNDERTALE owner.
+The project is free to use only for **NON-commercial purposes. Do NOT sell this.**
+Doing so results in copyright infringement torwards the current UNDERTALE owner.
 *UNDERTALE is a creation of Toby Fox.*
 Most of the assets were taken or copied from them and are therefore not mine.
 Only thing I have to take credit for is the code I wrote and nothing else.
@@ -64,5 +64,9 @@ Same goes for the fonts included:
 ## CONTACTS
 In case you have any issue you would like to disclose, down here you can find several contact info.
 
-_Discord tag:_ **samuelwolfang**
+_Discord tag:_ **Samuel Wolfang#3425**
 _Email:_ [soupsam02@gmail.com](mailto:soupsam02@gmail.com)
+
+Copyright (c) [2021] [alias Samuel Wolfang]. [![UNDOTALE Icon](https://i.imgur.com/DBLxrrj.png)](https://www.youtube.com/channel/UCRzHxOux8-jpVgnPkJVWA-w)
+
+**_PLEASE_** **DO NOT SELL.**

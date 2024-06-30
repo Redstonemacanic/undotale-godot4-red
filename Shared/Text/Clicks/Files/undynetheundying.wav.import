@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/undynetheundying.wav-f3a49f8e62fb112d3ceba87e991fc184.sample"
+type="AudioStreamWAV"
+uid="uid://dg7dlgb1od4xm"
+path="res://.godot/imported/undynetheundying.wav-f3a49f8e62fb112d3ceba87e991fc184.sample"
 
 [deps]
 
 source_file="res://Shared/Text/Clicks/Files/undynetheundying.wav"
-dest_files=[ "res://.import/undynetheundying.wav-f3a49f8e62fb112d3ceba87e991fc184.sample" ]
+dest_files=["res://.godot/imported/undynetheundying.wav-f3a49f8e62fb112d3ceba87e991fc184.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

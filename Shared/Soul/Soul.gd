@@ -1,8 +1,8 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-onready var ghost = preload("res://Shared/Soul/Ghost.tscn")
+@onready var ghost = preload("res://Shared/Soul/Ghost.tscn")
 
-export(String, "", "red", "blue") var currentFunction
+@export var currentFunction # (String, "", "red", "blue")
 
 var health = 48
 
@@ -31,12 +31,13 @@ func _physics_process(delta):
 func changeMovement(value):
 	var negate = ["", "still"]
 	if !(currentFunction in negate) and !(value in negate):
-		var ghost_inst = ghost.instance()
+		var ghost_inst = ghost.instantiate()
 		self.add_child(ghost_inst)
 	currentFunction = value
 
 func still(delta):
-	move_and_slide(Vector2.ZERO)
+	set_velocity(Vector2.ZERO)
+	move_and_slide()
 
 func red(delta):
 	modulate = Color(1,0,0,1)
@@ -49,7 +50,8 @@ func red(delta):
 	input.x = inputList[0] - inputList[1]
 	input.y = inputList[2] - inputList[3]
 	motion = speed * input
-	move_and_slide(motion)
+	set_velocity(motion)
+	move_and_slide()
 
 func blue(delta):
 	modulate = Color(0,0,1,1)
@@ -75,7 +77,9 @@ func blue(delta):
 	if is_on_ceiling() and motion.y < -jump.x:
 		motion.y = -jump.x / 2.0
 	
-	move_and_slide(motion, Vector2.UP)
+	set_velocity(motion)
+	set_up_direction(Vector2.UP)
+	move_and_slide()
 
 func _on_body_entered(body):
 	if body.is_in_group("damage"):

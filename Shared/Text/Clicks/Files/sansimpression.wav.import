@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/sansimpression.wav-52d69d68bc4176645c900b5cab8c0faa.sample"
+type="AudioStreamWAV"
+uid="uid://dcft2jp3b1416"
+path="res://.godot/imported/sansimpression.wav-52d69d68bc4176645c900b5cab8c0faa.sample"
 
 [deps]
 
 source_file="res://Shared/Text/Clicks/Files/sansimpression.wav"
-dest_files=[ "res://.import/sansimpression.wav-52d69d68bc4176645c900b5cab8c0faa.sample" ]
+dest_files=["res://.godot/imported/sansimpression.wav-52d69d68bc4176645c900b5cab8c0faa.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0
