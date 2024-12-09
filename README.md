@@ -1,3 +1,5 @@
+i dont know what im doing so i just forked it from the fork by etherealxx, they did most of the porting 
+
 Currently in an effort of porting this project to Godot 4. Work in progress. Feel free to contact me (in Issue page) to help.
 
 ##### About the repo creator
